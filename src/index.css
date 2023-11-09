@@ -2,3 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap");
+
+@font-face {
+  font-family: 'pixels';
+  src: url('DePixelHalbfett.otf');
+}
+
+.cont{
+  background-image: url('bg_login.png');
+  background-size: cover;
+}
+
+/* *{
+  font-family: 'pixels', sans-serif;
+} */
+
+*::-webkit-scrollbar{
+  width: 0px;
+  height: 0px;
+}
