@@ -118,19 +118,30 @@ function App() {
               </div>
             </div>
             <div className=''>
-              <h1 className='text-5xl font-bold text-center pixelated' >ATTACK LOG</h1>
+              <h1 className='text-5xl font-bold text-center pixelated' >ACTIVITY LOG</h1>
               <div className=' bg-black/50 w-full h-[46rem] p-8 mt-10 rounded-xl text-black overflow-y-auto'>
                 {
                   attack
                   &&
                   attack.map((item, i) => {
-                    return (
-                      <>
-                        <div className='mb-2 p-2 bg-white rounded-lg'>
-                          <p className='text-xl'><b>{item.username}</b> has been attacked by <b>{item.sender}</b> with <b><u>{item.gold == -150 ? "Dynamite" : "Cannon Bomb"}</u></b> and lost their <b>{item.gold*-1}</b> gold</p>
-                        </div>
-                      </>
-                    )
+                    if(item.sender == "inflation"){
+                      return (
+                        <>
+                          <div className='mb-2 p-2 bg-white rounded-lg'>
+                            <p className='text-xl'><b>{item.username}</b> lost their <b>{item.gold*-1}</b> gold by <b>Inflation</b></p>
+                          </div>
+                        </>
+                      )
+                    }else{
+                      return (
+                        <>
+                          <div className='mb-2 p-2 bg-white rounded-lg'>
+                            <p className='text-xl'><b>{item.username}</b> has been attacked by <b>{item.sender}</b> with <b><u>{item.gold == -150 ? "Dynamite" : "Cannon Bomb"}</u></b> and lost their <b>{item.gold*-1}</b> gold</p>
+                          </div>
+                        </>
+                      )
+
+                    }
                   })
                 }
               </div>
