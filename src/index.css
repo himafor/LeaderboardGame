@@ -14,9 +14,9 @@
   background-size: cover;
 }
 
-/* *{
+.pixelated{
   font-family: 'pixels', sans-serif;
-} */
+}
 
 *::-webkit-scrollbar{
   width: 0px;

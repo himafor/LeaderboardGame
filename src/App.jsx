@@ -6,7 +6,7 @@ function App() {
   const [attack, setAttack] = useState([])
 
   const client = axios.create({
-    baseURL: 'http://192.168.1.3:4000',
+    baseURL: 'http://192.168.0.9:4000',
   })
 
   function getData(){
@@ -26,21 +26,29 @@ function App() {
       getData()
     }, 2000);
 
-    return () => clearInterval(interval);
+    const timeout = setTimeout(() => {
+      window.location.reload()
+    }, (1000 * 60 * 10))
+    
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout)
+    };
+
   }, [])
 
   return (
     <>
       <div className="cont w-screen h-screen relative">
-        <div className='p-16 w-full h-full'>
+        <div className='px-16 py-8 w-full h-full'>
           <div className='w-full flex justify-center'>
-            <h1 className='text-7xl font-bold' style={{textShadow: "4px 4px #ffd050"}}>PIRATES ISLAND</h1>
+            <h1 className='text-7xl font-bold pixelated' >PIRATES ISLAND</h1>
           </div>
 
           <div className='grid grid-cols-2 gap-16 mt-16'>
             <div className=''>
-              <h1 className='text-5xl font-bold text-center' style={{textShadow: "4px 4px #ffff00"}}>LEADERBOARD</h1>
-              <div className=' bg-black/50 w-full h-[42rem] p-8 mt-10 rounded-xl text-white'>
+              <h1 className='text-5xl font-bold text-center pixelated' >LEADERBOARD</h1>
+              <div className=' bg-black/50 w-full h-[46rem] p-8 mt-10 rounded-xl text-white pixelated'>
                 {
                   leaderboard
                   &&
@@ -49,9 +57,9 @@ function App() {
                       return (
                         <div key={i} className='w-full'>
                           <div className={`
-                            ${i == 0 && "text-4xl text-center"} 
-                            ${i == 1 && "text-3xl text-center"} 
-                            ${i == 2 && "text-2xl text-center"}
+                            ${i == 0 && "text-3xl text-center"} 
+                            ${i == 1 && "text-2xl text-center"} 
+                            ${i == 2 && "text-xl text-center"}
                             mb-1 flex justify-center items-center
                             `}
                           > 
@@ -90,8 +98,8 @@ function App() {
                       if(i > 2){
                         return (
                           <div key={i} className='w-full'>
-                            <div className={`mb-1 text-xl flex items-center`}>
-                              <div>{i+1}. {item.username} - </div>
+                            <div className={`mb-2 text-lg flex items-center`}>
+                              <div>{i+1}. Big Black Mamba - </div>
                               <img 
                               src="gold2.png" 
                               className={`mx-1 h-6`} 
@@ -110,8 +118,8 @@ function App() {
               </div>
             </div>
             <div className=''>
-              <h1 className='text-5xl font-bold text-center' style={{textShadow: "4px 4px #ff3030"}}>ATTACK LOG</h1>
-              <div className=' bg-black/50 w-full h-[42rem] p-8 mt-10 rounded-xl text-black overflow-y-auto'>
+              <h1 className='text-5xl font-bold text-center pixelated' >ATTACK LOG</h1>
+              <div className=' bg-black/50 w-full h-[46rem] p-8 mt-10 rounded-xl text-black overflow-y-auto'>
                 {
                   attack
                   &&
